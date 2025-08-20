@@ -1,0 +1,148 @@
+.about {
+  padding: 100px 0;
+  background: #f8fafc;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.about-text h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+}
+
+.about-text h4 {
+  font-size: 1.2rem;
+  color: #667eea;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.about-text p {
+  font-size: 1.1rem;
+  color: #4a5568;
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+.skills-section {
+  margin-top: 2rem;
+}
+
+.skills-section h4 {
+  font-size: 1.3rem;
+  color: #2d3748;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+}
+
+.skill-item {
+  background: white;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.skill-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border-color: #667eea;
+}
+
+.skill-item span {
+  font-weight: 600;
+  color: #2d3748;
+  font-size: 0.9rem;
+}
+
+.about-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.stat-item {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.stat-item h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #667eea;
+  margin-bottom: 0.5rem;
+}
+
+.stat-item p {
+  font-size: 1rem;
+  color: #718096;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: 60px 0;
+  }
+
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .about-text h3 {
+    font-size: 1.8rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  .about-stats {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .stat-item {
+    padding: 1.5rem;
+  }
+
+  .stat-item h3 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-stats {
+    flex-direction: column;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
