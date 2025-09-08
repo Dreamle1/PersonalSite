@@ -8,7 +8,7 @@
     "server": "nodemon index.js",
     "start:frontend": "react-scripts start",
     "dev": "concurrently \"npm run server\" \"npm run start:frontend\"",
-    "build": "react-scripts build",
+    "build": "npx react-scripts build",
     "vercel-build": "cd client && npm install && npx react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
