@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Projects.css';
 
 const Projects = ({ projects }) => {
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [prevX, setPrevX] = useState(0);
+  const [projectCardWidth, setProjectCardWidth] = useState(866);
+  
   // Default projects based on resume if no data is provided
   const defaultProjects = [
     {
@@ -60,6 +65,45 @@ const Projects = ({ projects }) => {
 
   const displayProjects = projects && projects.length > 0 ? projects : defaultProjects;
 
+  // Drag functionality
+  const handleDragStart = (e) => {
+    setIsDragging(true);
+    setPrevX(e.type === 'mousedown' ? e.clientX : e.touches[0].clientX);
+  };
+
+  const handleDragMove = (e) => {
+    if (!isDragging) return;
+    
+    const currentX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+    const diff = prevX - currentX;
+    const slideWidth = window.innerWidth;
+    var offset= dragOffset - (diff / slideWidth) * 100;
+    if (offset > 0) {
+      offset = 0;
+    }
+    const slideableAmount = ((4 * projectCardWidth)-slideWidth) / slideWidth * 100;
+    if (offset < -slideableAmount) {
+      offset = -slideableAmount;
+    }
+    setDragOffset(offset);
+    setPrevX(currentX );
+  };
+
+  const handleDragEnd = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+  };
+
+  // Prevent default behavior for touch events
+  const handleTouchStart = (e) => {
+    handleDragStart(e);
+  };
+
+  const handleTouchMove = (e) => {
+    e.preventDefault();
+    handleDragMove(e);
+  };
+
   return (
     <section id="projects" className="projects">
       <div className="container">
@@ -68,43 +112,63 @@ const Projects = ({ projects }) => {
           <p>Key projects and professional experience</p>
         </div>
         
-        <div className="projects-grid">
-          {displayProjects.map((project) => (
-            <div key={project.id} className="project-card">
-              <div className="project-image">
-                <div className="project-placeholder">
-                  {project.title.charAt(0)}
-                </div>
-              </div>
-              
-              <div className="project-content">
-                <h3>{project.title}</h3>
-                <p className="project-company">
-                  <strong>{project.company}</strong> • {project.period}
-                </p>
-                <p>{project.description}</p>
-                
-                {project.highlights && (
-                  <div className="project-highlights">
-                    <h4>Key Achievements:</h4>
-                    <ul>
-                      {project.highlights.map((highlight, index) => (
-                        <li key={index}>{highlight}</li>
-                      ))}
-                    </ul>
+        <div className="carousel-container">
+          <div className="carousel-wrapper">
+            <div 
+              className={`carousel-slides ${isDragging ? 'dragging' : ''}`}
+              style={{ 
+                transform: `translateX(calc(${dragOffset}%))`,
+                transition: isDragging ? 'none' : 'transform 0s ease-in-out'
+              }}
+              onMouseDown={handleDragStart}
+              onMouseMove={handleDragMove}
+              onMouseUp={handleDragEnd}
+              onMouseLeave={handleDragEnd}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleDragEnd}
+            >
+              {displayProjects.map((project) => (
+                <div key={project.id} className="carousel-slide">
+                  <div className="project-card">
+                    <div className="project-image">
+                      <div className="project-placeholder">
+                        {project.title.charAt(0)}
+                      </div>
+                    </div>
+                    
+                    <div className="project-content">
+                      <h3>{project.title}</h3>
+                      <p className="project-company">
+                        <strong>{project.company}</strong> • {project.period}
+                      </p>
+                      <p>{project.description}</p>
+                      
+                      {project.highlights && (
+                        <div className="project-highlights">
+                          <h4>Key Achievements:</h4>
+                          <ul>
+                            {project.highlights.map((highlight, index) => (
+                              <li key={index}>{highlight}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      
+                      <div className="project-technologies">
+                        {project.technologies.map((tech, index) => (
+                          <span key={index} className="tech-tag">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                )}
-                
-                <div className="project-technologies">
-                  {project.technologies.map((tech, index) => (
-                    <span key={index} className="tech-tag">
-                      {tech}
-                    </span>
-                  ))}
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
+          
         </div>
         
         <div className="projects-cta">
