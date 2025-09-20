@@ -20,10 +20,8 @@ const Hero = () => {
             <span className="typing-text">Software Engineer</span>
           </h2>
           <p className="hero-description">
-            I build robust software solutions with expertise in full-stack development, 
-            database systems, and cloud technologies. Passionate about creating scalable 
-            applications that solve real-world problems.
-          </p>
+          I build robust, scalable software solutions across full-stack development, databases, and cloud technologies. From backend infrastructure and API design to frontend interfaces, turning complex ideas into intuitive applications. Driven by continuous learning, I adapt quickly, embrace new technologies, and deliver solutions with real-world impact.
+         </p>
           <div className="hero-buttons">
             <button 
               className="btn btn-primary"

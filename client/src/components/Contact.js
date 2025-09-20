@@ -24,7 +24,7 @@ const Contact = () => {
           <div className="contact-info">
             <h3>Let's Connect</h3>
             <p>
-              I'm always interested in hearing about new opportunities and exciting projects. 
+              I'm always interested in hearing about new opportunities. 
               Whether you have a question or just want to say hi, feel free to reach out!
             </p>
             

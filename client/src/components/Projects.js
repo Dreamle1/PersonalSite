@@ -109,7 +109,7 @@ const Projects = ({ projects }) => {
       <div className="container">
         <div className="section-header">
           <h2>Projects & Experience</h2>
-          <p>Key projects and professional experience</p>
+          <p>I’ve worked on projects ranging from enterprise-grade authentication systems to interactive learning platforms:</p>
         </div>
         
         <div className="carousel-container">
@@ -178,7 +178,7 @@ const Projects = ({ projects }) => {
             security best practices, and effective collaboration.
           </p>
           <p>
-            <strong>Ready to bring this experience to your next project!</strong>
+            <strong>Ready to bring this experience to you!</strong>
           </p>
         </div>
       </div>
