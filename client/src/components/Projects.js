@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Projects.css';
 
 const Projects = ({ projects }) => {
@@ -89,6 +89,19 @@ const Projects = ({ projects }) => {
     setPrevX(currentX );
   };
 
+  useEffect(() => {
+    function handleResize(){
+      
+      const slideWidth = window.innerWidth;
+      if (slideWidth > 4 * projectCardWidth) {
+        var offset = 50 - (2 * projectCardWidth /slideWidth) * 100 ;
+        setDragOffset(offset);
+      }
+    }
+    window.addEventListener("resize",handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  })
+
   const handleDragEnd = () => {
     if (!isDragging) return;
     setIsDragging(false);
@@ -109,7 +122,7 @@ const Projects = ({ projects }) => {
       <div className="container">
         <div className="section-header">
           <h2>Projects & Experience</h2>
-          <p>I’ve worked on projects ranging from enterprise-grade authentication systems to interactive learning platforms:</p>
+          <p>Projects ranging from enterprise-grade authentication systems to interactive learning platforms:</p>
         </div>
         
         <div className="carousel-container">

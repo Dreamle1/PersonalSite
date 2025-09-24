@@ -45,9 +45,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="scroll-indicator">
-        <div className="scroll-arrow"></div>
-      </div>
     </section>
   );
 };

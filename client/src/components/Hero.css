@@ -71,9 +71,10 @@
 }
 
 .hero-buttons {
-  display: flex;
+  display: block;
   gap: 1rem;
   flex-wrap: wrap;
+  text-align: center;
 }
 
 .hero-buttons .btn {
